@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="form"
+            type="my.luckydog.presentation.dialogs.message.MessageDialogForm" />
+
+        <variable
+            name="handler"
+            type="my.luckydog.presentation.dialogs.buttonbar.ButtonDialogHandler" />
+
+        <variable
+            name="buttonForm"
+            type="my.luckydog.presentation.dialogs.buttonbar.ButtonDialogForm" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:background="@android:color/darker_gray">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@android:color/white"
+            android:padding="8dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="@{form.title}"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:visibility="@{(form.title.isEmpty() || form.title == null) ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Error title"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_icon"
+                drawableIcon="@{form.iconDrawable}"
+                srcIcon="@{form.iconRes}"
+                android:layout_width="72dp"
+                android:layout_height="92dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:srcCompat="@drawable/ic_pets_black_24dp"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="15dp"
+                android:text="@{form.message}"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:visibility="@{(form.message.isEmpty() || form.message == null) ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_icon"
+                tools:text="error text bla bla"
+                tools:visibility="visible" />
+
+            <my.luckydog.presentation.dialogs.buttonbar.ButtonBarDialog
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_message"
+                app:handler="@{handler}"
+                app:form="@{buttonForm}"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

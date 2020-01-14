@@ -1,0 +1,7 @@
+include ':app'
+include ':data'
+include ':presentation'
+include ':domain'
+include ':interactors'
+include ':boundaries'
+rootProject.name='LuckyDog'

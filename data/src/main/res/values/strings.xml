@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- auth -->
+    <string name="email_format_error">Provide an email in the correct format</string>
+    <string name="password_format_error">Provide a password in the correct format</string>
+    <string name="unknown_error">Unknown error</string>
+    <!-- sign up -->
+    <string name="email_exist_error">This email already exists</string>
+    <!-- sign in -->
+    <string name="incorrect_credentials">Incorrect email or password</string>
+
+</resources>

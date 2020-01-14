@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+    def androidConfiguration = globalConfiguration["android"]
+
+    compileSdkVersion androidConfiguration["compileSdk"]
+    buildToolsVersion androidConfiguration["buildTools"]
+
+
+    defaultConfig {
+        minSdkVersion androidConfiguration["minSdk"]
+        targetSdkVersion androidConfiguration["targetSdk"]
+    }
+}
+
+dependencies {
+    implementation project(':boundaries')
+    def dependencies = rootProject.ext.dataDependencies
+    def roomDependencies = rootProject.ext.roomDependencies
+
+    implementation dependencies.kotlin
+
+    implementation roomDependencies.roomKtx
+    implementation roomDependencies.roomRx
+    kapt roomDependencies.roomCompiler
+}

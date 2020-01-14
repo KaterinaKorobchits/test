@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1095565879875",
+    "firebase_url": "https://luckydog-c4f63.firebaseio.com",
+    "project_id": "luckydog-c4f63",
+    "storage_bucket": "luckydog-c4f63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095565879875:android:01ef30367da8eb504b02f6",
+        "android_client_info": {
+          "package_name": "my.luckydog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1095565879875-qum4bkrl61o96bmqkqekluon192vkhbp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbSC06ws8X8jRCuXWyv1U614FhpN2JOSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095565879875-qum4bkrl61o96bmqkqekluon192vkhbp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
