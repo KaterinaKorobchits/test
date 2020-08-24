@@ -2,27 +2,32 @@ package my.luckydog.domain.signup
 
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import my.luckydog.boundaries.session.SessionStore
+import my.luckydog.boundaries.app.session.SessionStore
 import my.luckydog.boundaries.signup.errors.CredentialsFormatFail
 import my.luckydog.boundaries.signup.errors.EmailFormatFail
 import my.luckydog.boundaries.signup.errors.PasswordFormatFail
 import my.luckydog.boundaries.signup.errors.SignUpError.*
 import my.luckydog.boundaries.signup.errors.SignUpErrorHandler
 import my.luckydog.boundaries.signup.repositories.SignUpRepository
-import my.luckydog.domain.validators.EmailCase
-import my.luckydog.domain.validators.PasswordCase
+import my.luckydog.domain.app.validators.EmailCase
+import my.luckydog.domain.app.validators.PasswordCase
 import my.luckydog.interactors.signup.SideEffect
 import my.luckydog.interactors.signup.SideEffect.Dialog.ShowUnknownError
 import my.luckydog.interactors.signup.SideEffect.Navigate
 import my.luckydog.interactors.signup.SideEffect.UpdateUi.*
+import javax.inject.Inject
 
-class SignUpCaseImpl(
+class SignUpCaseImpl @Inject constructor(
     private val emailCase: EmailCase,
     private val passwordCase: PasswordCase,
     private val repository: SignUpRepository,
     private val session: SessionStore,
     private val errors: SignUpErrorHandler
 ) : SignUpCase {
+
+    init {
+        println("!!!init: SignUpCaseImpl - ${this::class.java.name} ${this.hashCode()}")
+    }
 
     override fun signUp(email: String, password: String): Single<SideEffect> {
         val validEmail = emailCase.isValid(email)

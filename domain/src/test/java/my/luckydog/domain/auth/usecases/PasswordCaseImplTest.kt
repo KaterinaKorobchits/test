@@ -1,6 +1,6 @@
 package my.luckydog.domain.auth.usecases
 
-import my.luckydog.domain.validators.PasswordCaseImpl
+import my.luckydog.domain.app.validators.PasswordCaseImpl
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith

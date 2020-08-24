@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="form"
             type="my.luckydog.presentation.fragments.signup.viewmodel.SignUpForm" />
@@ -18,13 +20,31 @@
         android:layout_height="match_parent"
         android:padding="12dp">
 
-        <my.luckydog.presentation.views.PawsView
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/test"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="test"
             app:layout_constraintTop_toTopOf="parent"
-            app:pawColor="#683E99" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/release"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="release"
+            app:layout_constraintTop_toBottomOf="@id/test"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/resume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="resume"
+            app:layout_constraintTop_toBottomOf="@id/release"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/l_email"
@@ -68,43 +88,42 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
+            style="@style/AppTheme.TextButton"
             android:id="@+id/b_sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:onClick="@{() -> handler.onClickSignUp()}"
             android:text="@string/sign_up"
-            app:layout_constraintBottom_toTopOf="@+id/b_terms_of_use"
+            android:visibility="@{form.isKeyboardShowed ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_terms_of_use"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/b_terms_of_use"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_terms_of_use"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_before_change_auth"
-            android:fontFamily="sans-serif-medium"
             android:gravity="end"
             android:onClick="@{() -> handler.onClickTermsOfUse()}"
             android:text="@string/terms_of_use"
-            android:textColor="@color/colorAccent"
-            android:textSize="14sp"
+            android:textColor="?attr/colorAccent"
+            android:visibility="@{form.isKeyboardShowed ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/b_sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/b_sign_in"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:letterSpacing="0"
+            android:gravity="center"
             android:onClick="@{() -> handler.onClickSignIn()}"
             android:text="@string/already_sign_in"
-            android:textAllCaps="false"
             android:textSize="14sp"
-            app:backgroundTint="@android:color/transparent"
+            android:visibility="@{form.isKeyboardShowed ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

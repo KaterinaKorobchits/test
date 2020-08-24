@@ -4,12 +4,17 @@ import android.app.Dialog
 import android.content.Context
 import my.luckydog.presentation.dialogs.DialogParams
 import my.luckydog.presentation.dialogs.factories.DialogCreator
+import javax.inject.Inject
 
-class DatePickerDialogCreator : DialogCreator {
+class DatePickerDialogCreator @Inject constructor() : DialogCreator {
+
+    init {
+        println("!!!init: DatePickerDialogCreator - ${this::class.java.name} ${this.hashCode()}")
+    }
 
     override fun create(context: Context, params: DialogParams): Dialog {
         params as DatePickerDialogParams
-        return MyDatePickerDialog.Builder(context)
+        return PickerDateDialog.Builder(context)
             .theme(params.theme)
             .cancelable(params.isCancelable)
             .year(params.year)

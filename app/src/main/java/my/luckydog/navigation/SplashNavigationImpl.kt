@@ -1,10 +1,15 @@
 package my.luckydog.navigation
 
-import androidx.navigation.NavController
 import my.luckydog.R
 import my.luckydog.presentation.fragments.splash.navigation.SplashNavigation
+import javax.inject.Inject
 
-class SplashNavigationImpl(private val producer: NavigatorProducer) : SplashNavigation {
+class SplashNavigationImpl @Inject constructor(private val producer: NavigatorProducer) :
+    SplashNavigation {
+
+    init {
+        println("!!!init: SplashNavigationImpl - ${this::class.java.name} ${this.hashCode()}")
+    }
 
     override fun showHome() {
         producer.provide()?.navigate(R.id.splash_to_home)

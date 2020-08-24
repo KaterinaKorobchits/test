@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/learn"
+    app:startDestination="@id/learn">
+
+    <fragment
+        android:id="@+id/learn"
+        android:name="my.luckydog.presentation.fragments.learn.LearnFragment"
+        android:label="LearnFragment"
+        tools:layout="@layout/fragment_learn">
+        <action
+            android:id="@+id/learn_to_test"
+            app:destination="@id/test" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/test"
+        android:name="my.luckydog.presentation.fragments.TestFragment"
+        android:label="TestFragment"
+        tools:layout="@layout/fragment_test" />
+</navigation>

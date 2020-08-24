@@ -4,8 +4,14 @@ import android.content.res.Resources
 import my.luckydog.boundaries.signup.errors.*
 import my.luckydog.boundaries.signup.errors.SignUpError.*
 import my.luckydog.data.R
+import javax.inject.Inject
 
-class SignUpErrorHandlerImpl(private val resources: Resources) : SignUpErrorHandler {
+class SignUpErrorHandlerImpl @Inject constructor(private val resources: Resources) :
+    SignUpErrorHandler {
+
+    init {
+        println("!!!init: SignUpErrorHandlerImpl - ${this::class.java.name} ${this.hashCode()}")
+    }
 
     override fun process(t: Throwable) = when (t) {
         is EmailAlreadyExist -> EmailExist(resources.getString(R.string.email_exist_error))

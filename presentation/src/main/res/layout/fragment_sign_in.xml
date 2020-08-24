@@ -4,13 +4,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="form"
             type="my.luckydog.presentation.fragments.signin.viewmodel.SignInForm" />
-
-        <variable
-            name="handler"
-            type="my.luckydog.presentation.fragments.signin.viewmodel.SignInHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,9 +28,11 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_email_black_24dp"
+                android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:padding="8dp"
                 android:text="@={form.email}" />
@@ -51,9 +51,11 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_password_black_24dp"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:padding="8dp"
                 android:text="@={form.password}" />
@@ -64,24 +66,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_before_change_auth"
-            android:onClick="@{() -> handler.onClickSignIn()}"
             android:text="@string/sign_in"
+            android:visibility="@{form.isKeyboardShowed ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/b_sign_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/b_sign_up"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:letterSpacing="0"
-            android:onClick="@{() -> handler.onClickSignUp()}"
+            android:gravity="center"
             android:text="@string/do_not_have_account_sign_up"
-            android:textAllCaps="false"
-            android:textSize="14sp"
-            app:backgroundTint="@android:color/transparent"
+            android:visibility="@{form.isKeyboardShowed ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

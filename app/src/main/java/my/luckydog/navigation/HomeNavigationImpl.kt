@@ -1,10 +1,15 @@
 package my.luckydog.navigation
 
-import androidx.navigation.NavController
 import my.luckydog.R
 import my.luckydog.presentation.fragments.home.navigation.HomeNavigation
+import javax.inject.Inject
 
-class HomeNavigationImpl(private val producer: NavigatorProducer) : HomeNavigation {
+class HomeNavigationImpl @Inject constructor(private val producer: NavigatorProducer) :
+    HomeNavigation {
+
+    init {
+        println("!!!init: HomeNavigationImpl - ${this::class.java.name} ${this.hashCode()}")
+    }
 
     override fun showSignIn() {
         producer.provide()?.navigate(R.id.home_to_signIn)

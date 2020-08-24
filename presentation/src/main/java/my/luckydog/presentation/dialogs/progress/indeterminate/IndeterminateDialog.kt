@@ -5,10 +5,11 @@ import android.content.Context
 import android.os.Bundle
 import android.view.Window
 import my.luckydog.presentation.R
+import my.luckydog.presentation.core.extensions.background
+import my.luckydog.presentation.core.extensions.fullScreen
+import my.luckydog.presentation.core.extensions.inflater
+import my.luckydog.presentation.core.extensions.setSafeOnClickListener
 import my.luckydog.presentation.databinding.DialogIndeterminateBinding
-import my.luckydog.presentation.extensions.background
-import my.luckydog.presentation.extensions.fullScreen
-import my.luckydog.presentation.extensions.inflater
 
 class IndeterminateDialog : Dialog {
 
@@ -25,7 +26,10 @@ class IndeterminateDialog : Dialog {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         val binding = DialogIndeterminateBinding.inflate(context.inflater(builder.theme))
-            .apply { form = builder.form }
+            .apply {
+                form = builder.form
+                if (builder.isCancelable) background.setSafeOnClickListener { dismiss() }
+            }
         setContentView(binding.root)
 
         window?.run {

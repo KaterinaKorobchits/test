@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#048500</color>
-    <color name="colorPrimaryDark">#035700</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="background">#90E793</color>
+    <color name="light_colorPrimary">#5AC857</color>
+    <color name="light_colorPrimaryDark">#035700</color>
+    <color name="light_colorAccent">@android:color/holo_orange_light</color>
+    <color name="light_background">#D6D6D6</color>
+
+    <color name="dark_colorPrimary">#023500</color>
+    <color name="dark_colorPrimaryDark">#011D00</color>
+    <color name="dark_colorAccent">#7A7A7A</color>
+    <color name="dark_background">#4E504E</color>
+
+    <color name="bg_toolbar">@android:color/white</color>
+    <color name="bg_bottom_nav_view">@android:color/white</color>
+    <color name="bg_nav_view">@android:color/white</color>
+
+    <color name="dialog_background">#80000000</color>
 </resources>

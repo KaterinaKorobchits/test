@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vocabulary"
+    app:startDestination="@id/vocabulary">
+
+    <fragment
+        android:id="@+id/vocabulary"
+        android:name="my.luckydog.presentation.fragments.vocabulary.VocabularyFragment"
+        android:label="VocabularyFragment"
+        tools:layout="@layout/fragment_vocabulary" />
+</navigation>

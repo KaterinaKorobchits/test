@@ -14,13 +14,10 @@
         <variable
             name="handler"
             type="my.luckydog.presentation.dialogs.buttonbar.ButtonDialogHandler" />
-
-        <variable
-            name="buttonForm"
-            type="my.luckydog.presentation.dialogs.buttonbar.ButtonDialogForm" />
     </data>
 
     <FrameLayout
+        android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
@@ -33,6 +30,8 @@
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             android:background="@android:color/white"
+            android:clickable="true"
+            android:focusable="true"
             android:padding="8dp">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -63,6 +62,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:scaleType="fitCenter"
+                android:visibility="@{(form.iconDrawable == null &amp;&amp; form.iconRes == 0) ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title"
@@ -89,14 +89,18 @@
                 tools:visibility="visible" />
 
             <my.luckydog.presentation.dialogs.buttonbar.ButtonBarDialog
+                negativeHandler="@{handler.negative}"
+                negativeText="@{form.negative}"
+                neutralHandler="@{handler.neutral}"
+                neutralText="@{form.neutral}"
+                positiveHandler="@{handler.positive}"
+                positiveText="@{form.positive}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_message"
-                app:handler="@{handler}"
-                app:form="@{buttonForm}"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_message" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

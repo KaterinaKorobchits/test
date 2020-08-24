@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="bg_toolbar">#636363</color>
+    <color name="bg_bottom_nav_view">#636363</color>
+    <color name="bg_nav_view">#636363</color>
+
+    <color name="dialog_background">#80000000</color>
+</resources>

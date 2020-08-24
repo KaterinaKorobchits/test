@@ -1,6 +1,5 @@
 package my.luckydog.presentation.fragments.splash
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import my.luckydog.interactors.SplashInteractor
 import my.luckydog.presentation.fragments.splash.navigation.SplashNavigation

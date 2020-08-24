@@ -1,28 +1,21 @@
 package my.luckydog.di.home
 
-import androidx.navigation.NavController
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import my.luckydog.boundaries.auth.AuthStore
-import my.luckydog.boundaries.session.SessionStore
+import my.luckydog.di.scopes.FragmentScope
 import my.luckydog.domain.home.HomeInteractorImpl
 import my.luckydog.interactors.HomeInteractor
 import my.luckydog.navigation.HomeNavigationImpl
-import my.luckydog.navigation.NavigatorProducer
 import my.luckydog.presentation.fragments.home.navigation.HomeNavigation
 
 @Module
-class HomeModule {
+abstract class HomeModule {
 
-    @Provides
-    @HomeScope
-    fun provideNavigation(producer: NavigatorProducer): HomeNavigation =
-        HomeNavigationImpl(producer)
+    @Binds
+    @FragmentScope
+    abstract fun provideNavigation(navigation: HomeNavigationImpl): HomeNavigation
 
-    @Provides
-    @HomeScope
-    fun provideInteractor(
-        authStore: AuthStore,
-        sessionStore: SessionStore
-    ): HomeInteractor = HomeInteractorImpl(sessionStore, authStore)
+    @Binds
+    @FragmentScope
+    abstract fun provideInteractor(interactor: HomeInteractorImpl): HomeInteractor
 }

@@ -9,5 +9,5 @@ data class TimePickerDialogParams(
     val setTime: (hour: Int, minute: Int) -> Unit = { _: Int, _: Int -> },
     val is24Hour: Boolean = true,
     override val isCancelable: Boolean = false,
-    override val theme: Int = R.style.DateTimePickerDialogTheme
+    override val theme: Int = R.style.TimePickerDialogTheme
 ) : DialogParams(isCancelable, theme)

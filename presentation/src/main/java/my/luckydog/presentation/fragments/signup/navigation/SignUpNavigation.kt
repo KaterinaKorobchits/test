@@ -7,4 +7,6 @@ interface SignUpNavigation {
     fun showSignIn(email: String)
 
     fun showTermsOfUse()
+
+    fun showAppSettings()
 }

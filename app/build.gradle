@@ -23,6 +23,13 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "TRANSLATE_URL", translateUrl
+        buildConfigField "String", "TRANSLATE_KEY", translateApiKey
+        buildConfigField "String", "DICTIONARY_URL", dictionaryUrl
+        buildConfigField "String", "DICTIONARY_KEY", dictionaryApiKey
+        buildConfigField "String", "IMAGE_URL", imageUrl
+        buildConfigField "String", "IMAGE_KEY", imageApiKey
     }
 
     buildTypes {
@@ -35,6 +42,16 @@ android {
     dataBinding {
         enabled = true
     }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
 }
 
 dependencies {
@@ -43,15 +60,17 @@ dependencies {
     implementation project(':domain')
     implementation project(':boundaries')
     implementation project(':data')
+    implementation project(':common')
+    implementation project(':common-android')
 
-    def dependencies = rootProject.ext.appDependencies
+    def dependencies = rootProject.ext.dependencies
     def testDependencies = rootProject.ext.testDependencies
-    def roomDependencies = rootProject.ext.roomDependencies
-    def daggerDependencies = rootProject.ext.daggerDependencies
 
     implementation dependencies.kotlin
 
     implementation dependencies.appCompat
+    implementation dependencies.constraintLayout
+    implementation dependencies.fresco
 
     implementation dependencies.navigation
     implementation dependencies.navigationUI
@@ -59,19 +78,28 @@ dependencies {
     implementation dependencies.analytics
     implementation dependencies.crashlytics
 
-    androidTestImplementation testDependencies.jUnit
-    androidTestImplementation testDependencies.testRunner
-    androidTestImplementation testDependencies.espresso
     testImplementation testDependencies.jUnit
+    testImplementation testDependencies.testRunner
 
     debugImplementation dependencies.leakcanary
 
-    implementation roomDependencies.roomKtx
-    implementation roomDependencies.roomRx
-    kapt roomDependencies.roomCompiler
+    implementation dependencies.roomKtx
+    implementation dependencies.roomRx
+    kapt dependencies.roomCompiler
 
-    implementation daggerDependencies.dagger
-    kapt daggerDependencies.daggerCompiler
+    implementation dependencies.logginInterceptor
+    implementation dependencies.retrofitRxAdapter
+    implementation dependencies.retrofitConverterGson
+
+    implementation dependencies.dagger
+    kapt dependencies.daggerCompiler
+
+    implementation dependencies.work
+    implementation dependencies.workRx
+
+    implementation (dependencies.security){
+        exclude group: 'com.google.protobuf', module: 'protobuf-lite'
+    }
 }
 
 apply plugin: 'com.google.gms.google-services'

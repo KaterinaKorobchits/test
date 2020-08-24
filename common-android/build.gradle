@@ -1,0 +1,37 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+    def androidConfiguration = globalConfiguration["android"]
+
+    compileSdkVersion androidConfiguration["compileSdk"]
+    buildToolsVersion androidConfiguration["buildTools"]
+
+
+    defaultConfig {
+        minSdkVersion androidConfiguration["minSdk"]
+        targetSdkVersion androidConfiguration["targetSdk"]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    def dependencies = rootProject.ext.dependencies
+
+    implementation dependencies.kotlin
+    implementation dependencies.work
+    compile dependencies.tink
+
+    implementation dependencies.coroutinesCore
+    implementation dependencies.coroutinesAndroid
+}

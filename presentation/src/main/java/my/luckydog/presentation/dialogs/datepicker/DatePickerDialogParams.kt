@@ -11,5 +11,5 @@ data class DatePickerDialogParams(
     val minDate: Long = Long.MIN_VALUE,
     val maxDate: Long = Long.MIN_VALUE,
     override val isCancelable: Boolean = false,
-    override val theme: Int = R.style.DateTimePickerDialogTheme
+    override val theme: Int = R.style.DatePickerDialogTheme
 ) : DialogParams(isCancelable, theme)

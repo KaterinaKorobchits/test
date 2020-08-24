@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="navView_height">60dp</dimen>
     <dimen name="margin_before_change_auth">50dp</dimen>
 </resources>

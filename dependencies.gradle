@@ -1,43 +1,58 @@
 ext {
     android = [
             buildTools: '29.0.2',
-            minSdk    : 21,
+            minSdk    : 23,
             targetSdk : 29,
             compileSdk: 29
     ]
 
-    support = [
-            appCompat       : '1.1.0',
-            design          : '1.0.0'
+    kotlin = [
+            version: '1.3.61'
+    ]
+
+    gradle = [
+            version: '3.6.1'
     ]
 
     androidX = [
-            constraintLayout: '1.1.3',
-            lifecycle       : '2.1.0',
-            navigation      : '2.1.0',
-            room            : '2.2.2'
+            appCompat         : '1.1.0',
+            constraintLayout  : '1.1.3',
+            lifecycle         : '2.2.0',
+            navigation        : '2.2.0',
+            room              : '2.2.4',
+            core              : '1.1.0',
+            swiperefreshlayout: '1.0.0',
+            paging            : '2.1.1',
+            work              : '2.3.2',
+            security          : '1.0.0-rc01'
+    ]
+
+    google = [
+            design  : '1.2.0-alpha05',
+            services: '4.3.2',
+            tink    : '1.3.0'
+    ]
+
+    facebook = [
+            fresco: '2.0.0'
     ]
 
     rx = [
-            android: '2.1.1',
-            java   : '2.2.8',
+            android   : '2.1.1',
+            java      : '2.2.8',
+            binding   : '3.1.0',
+            permission: '0.7.0'
     ]
 
     dagger = [
             version : '2.25.4',
-            compiler: '2.25.4'
+            compiler: '2.25.4',
+            inject  : '1'
     ]
 
-    kotlin = [
-            version: '1.3.50'
-    ]
-
-    gradle = [
-            build: '3.5.3'
-    ]
-
-    google = [
-            services: '4.3.2'
+    rest = [
+            retrofit: '2.7.1',
+            okhttp  : '4.3.1'
     ]
 
     fabric = [
@@ -46,11 +61,16 @@ ext {
 
     firebase = [
             crashlytics: '2.10.1',
-            analytics  : '17.2.0'
+            analytics  : '17.2.0',
+            config     : '19.1.1'
+    ]
+
+    coroutines = [
+            version: '1.3.5'
     ]
 
     leakcanary = [
-            version: '2.0-beta-4'
+            version: '2.2'
     ]
 
     validator = [
@@ -63,73 +83,82 @@ ext {
             espresso  : '3.2.0-alpha05'
     ]
 
-    projectDependencies = [
-            gradle      : "com.android.tools.build:gradle:${gradle.build}",
-            kotlinPlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin.version}",
-            services    : "com.google.gms:google-services:${google.services}",
-            fabric      : "io.fabric.tools:gradle:${fabric.build}"
-    ]
+    dependencies = [
 
-    boundariesDependencies = [
-            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin.version}",
-            rxJava: "io.reactivex.rxjava2:rxjava:${rx.java}"
-    ]
+            //kotlin
+            kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin.version}",
+            kotlinPlugin         : "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin.version}",
 
-    interactorsDependencies = [
-            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin.version}",
-            rxJava: "io.reactivex.rxjava2:rxjava:${rx.java}"
-    ]
+            // gradle
+            gradle               : "com.android.tools.build:gradle:${gradle.version}",
 
-    domainDependencies = [
-            kotlin   : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin.version}",
-            rxJava: "io.reactivex.rxjava2:rxjava:${rx.java}",
-            validator: "commons-validator:commons-validator:${validator.version}"
-    ]
+            //navigation
+            navigation           : "androidx.navigation:navigation-fragment-ktx:${androidX.navigation}",
+            navigationUI         : "androidx.navigation:navigation-ui-ktx:${androidX.navigation}",
 
-    dataDependencies = [
-            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin.version}"
-    ]
+            //google
+            services             : "com.google.gms:google-services:${google.services}",
+            fabric               : "io.fabric.tools:gradle:${fabric.build}",
+            crashlytics          : "com.crashlytics.sdk.android:crashlytics:${firebase.crashlytics}",
+            config               : "com.google.firebase:firebase-config-ktx:${firebase.config}",
+            analytics            : "com.google.firebase:firebase-analytics:${firebase.analytics}",
 
-    presentationDependencies = [
-            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin.version}",
-            appCompat          : "androidx.appcompat:appcompat:${support.appCompat}",
-            analytics          : "com.google.firebase:firebase-analytics:${firebase.analytics}",
-            crashlytics        : "com.crashlytics.sdk.android:crashlytics:${firebase.crashlytics}",
-            leakcanary         : "com.squareup.leakcanary:leakcanary-android:${leakcanary.version}",
-            design             : "com.google.android.material:material:${support.design}",
-            constraintLayout   : "androidx.constraintlayout:constraintlayout:${androidX.constraintLayout}",
-            lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:${androidX.lifecycle}",
-            lifecycleCompiler  : "androidx.lifecycle:lifecycle-compiler:${androidX.lifecycle}",
-            navigation         : "androidx.navigation:navigation-fragment-ktx:${androidX.navigation}",
-            navigationUI       : "androidx.navigation:navigation-ui-ktx:${androidX.navigation}",
-            rxAndroid          : "io.reactivex.rxjava2:rxandroid:${rx.android}",
-    ]
+            //dagger
+            daggerCompiler       : "com.google.dagger:dagger-compiler:${dagger.compiler}",
+            dagger               : "com.google.dagger:dagger:${dagger.version}",
+            inject               : "javax.inject:javax.inject:${dagger.inject}",
 
-    appDependencies = [
-            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin.version}",
-            appCompat          : "androidx.appcompat:appcompat:${support.appCompat}",
-            analytics          : "com.google.firebase:firebase-analytics:${firebase.analytics}",
-            crashlytics        : "com.crashlytics.sdk.android:crashlytics:${firebase.crashlytics}",
-            leakcanary         : "com.squareup.leakcanary:leakcanary-android:${leakcanary.version}",
-            navigation         : "androidx.navigation:navigation-fragment-ktx:${androidX.navigation}",
-            navigationUI       : "androidx.navigation:navigation-ui-ktx:${androidX.navigation}"
+            //rx
+            rxJava               : "io.reactivex.rxjava2:rxjava:${rx.java}",
+            rxAndroid            : "io.reactivex.rxjava2:rxandroid:${rx.android}",
+            rxBindingAppCompat   : "com.jakewharton.rxbinding3:rxbinding-appcompat:${rx.binding}",
+            rxPermission         : "com.vanniktech:rxpermission:${rx.permission}",
+
+            //rest
+            logginInterceptor    : "com.squareup.okhttp3:logging-interceptor:${rest.okhttp}",
+            retrofitRxAdapter    : "com.squareup.retrofit2:adapter-rxjava2:${rest.retrofit}",
+            retrofitConverterGson: "com.squareup.retrofit2:converter-gson:${rest.retrofit}",
+
+            //ui
+            appCompat            : "androidx.appcompat:appcompat:${androidX.appCompat}",
+            design               : "com.google.android.material:material:${google.design}",
+            constraintLayout     : "androidx.constraintlayout:constraintlayout:${androidX.constraintLayout}",
+            swiperefreshlayout   : "androidx.swiperefreshlayout:swiperefreshlayout:${androidX.swiperefreshlayout}",
+            fresco               : "com.facebook.fresco:fresco:${facebook.fresco}",
+            paging               : "androidx.paging:paging-runtime-ktx:${androidX.paging}",
+
+            //lifecycle
+            lifecycleExtensions  : "androidx.lifecycle:lifecycle-extensions:${androidX.lifecycle}",
+            lifecycleCompiler    : "androidx.lifecycle:lifecycle-compiler:${androidX.lifecycle}",
+            lifecycleRs          : "androidx.lifecycle:lifecycle-reactivestreams:${androidX.lifecycle}",
+
+            //room
+            roomRuntime          : "androidx.room:room-runtime:${androidX.room}",
+            roomKtx              : "androidx.room:room-ktx:${androidX.room}",
+            roomCompiler         : "androidx.room:room-compiler:${androidX.room}",
+            roomRx               : "androidx.room:room-rxjava2:${androidX.room}",
+
+            //workManager
+            work                 : "androidx.work:work-runtime-ktx:${androidX.work}",
+            workRx               : "androidx.work:work-rxjava2:${androidX.work}",
+
+            //coroutines
+            coroutinesCore       : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines.version}",
+            coroutinesAndroid    : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines.version}",
+
+            //security
+            security             : "androidx.security:security-crypto:${androidX.security}",
+            tink                 : "com.google.crypto.tink:tink-android:${google.tink}",
+
+            //leakcanary
+            leakcanary           : "com.squareup.leakcanary:leakcanary-android:${leakcanary.version}",
+
+            validator            : "commons-validator:commons-validator:${validator.version}"
     ]
 
     testDependencies = [
             jUnit     : "androidx.test.ext:junit:${test.jUnit}",
             testRunner: "androidx.test:runner:${test.testRunner}",
             espresso  : "androidx.test.espresso:espresso-core:${test.espresso}"
-    ]
-
-    roomDependencies = [
-            roomRuntime : "androidx.room:room-runtime:${androidX.room}",
-            roomKtx     : "androidx.room:room-ktx:${androidX.room}",
-            roomCompiler: "androidx.room:room-compiler:${androidX.room}",
-            roomRx      : "androidx.room:room-rxjava2:${androidX.room}"
-    ]
-
-    daggerDependencies = [
-            daggerCompiler: "com.google.dagger:dagger-compiler:${dagger.compiler}",
-            dagger        : "com.google.dagger:dagger:${dagger.version}"
     ]
 }

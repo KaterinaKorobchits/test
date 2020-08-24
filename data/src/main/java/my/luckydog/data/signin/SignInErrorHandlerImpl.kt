@@ -4,8 +4,14 @@ import android.content.res.Resources
 import my.luckydog.boundaries.signin.errors.*
 import my.luckydog.boundaries.signin.errors.SignInError.*
 import my.luckydog.data.R
+import javax.inject.Inject
 
-class SignInErrorHandlerImpl(private val resources: Resources) : SignInErrorHandler {
+class SignInErrorHandlerImpl @Inject constructor(private val resources: Resources) :
+    SignInErrorHandler {
+
+    init {
+        println("!!!init: SignInErrorHandlerImpl - ${this::class.java.name} ${this.hashCode()}")
+    }
 
     override fun process(t: Throwable) = when (t) {
         is CredentialsNotExists -> CredentialsIncorrect(resources.getString(R.string.incorrect_credentials))

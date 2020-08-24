@@ -1,9 +1,10 @@
 package my.luckydog.presentation.fragments.signup.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import my.luckydog.interactors.signup.SideEffect
 import my.luckydog.interactors.signup.SideEffect.*
 import my.luckydog.interactors.signup.SideEffect.Dialog.*
@@ -11,37 +12,44 @@ import my.luckydog.interactors.signup.SideEffect.Navigate.ToSignIn
 import my.luckydog.interactors.signup.SideEffect.Navigate.ToTerms
 import my.luckydog.interactors.signup.SideEffect.UpdateUi.*
 import my.luckydog.interactors.signup.SignUpInteractor
-import my.luckydog.presentation.extensions.safeGet
+import my.luckydog.presentation.core.Event
+import my.luckydog.presentation.core.extensions.safeGet
+import my.luckydog.presentation.fragments.signup.dialogs.SignUpDialogs
 import kotlin.LazyThreadSafetyMode.NONE
 
 class SignUpViewModel(
-    private val interactor: SignUpInteractor
+    private val interactor: SignUpInteractor,
+    val dialogs: SignUpDialogs
 ) : ViewModel(), SignUpHandler, LifecycleObserver {
 
     val form: SignUpForm = SignUpForm()
 
-    val navigate: LiveData<Navigate>
+    val navigate: LiveData<Event<Navigate>>
         get() = navigation
-    val showDialog: LiveData<Dialog>
-        get() = dialogs
+    val showDialog: LiveData<Event<Dialog>>
+        get() = dialog
 
     private val composite by lazy(NONE) { CompositeDisposable() }
 
-    private val navigation = MutableLiveData<Navigate>()
-    private val dialogs = MutableLiveData<Dialog>()
+    private val navigation = MutableLiveData<Event<Navigate>>()
+    private val dialog = MutableLiveData<Event<Dialog>>()
+
+    fun onKeyboardChanged(status: Boolean) = form.isKeyboardShowed.set(status)
+
+    fun load(single: Single<Unit>){
+        val load = single.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
+        composite.add(load)
+    }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun clear() {
         composite.clear()
     }
-    init{
-        Log.e("aaa", "vm up-init")
-    }
 
     override fun onCleared() {
-        Log.e("aaa", "vm up-onCleared")
         composite.dispose()
-        process(Clear)
         super.onCleared()
     }
 
@@ -62,9 +70,9 @@ class SignUpViewModel(
     override fun onClickTermsOfUse() = process(ToTerms)
 
     private fun process(effect: SideEffect) = when (effect) {
-        is Navigate -> navigation.value = effect
+        is Navigate -> navigation.value = Event(effect)
         is UpdateUi -> update(effect)
-        is Dialog -> dialogs.value = effect
+        is Dialog -> dialog.value = Event(effect)
     }
 
     private fun update(update: UpdateUi) = when (update) {

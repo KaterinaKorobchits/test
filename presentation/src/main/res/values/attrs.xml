@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="windowBackgroundColor" format="color"/>
+
     <declare-styleable name="PawsView">
-        <attr name="pawColor" format="color"/>
+        <attr name="pawColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="BaseImageView">
+        <attr name="imageRes" format="reference" />
+        <attr name="placeholderImageRes" format="reference" />
+        <attr name="failureImageRes" format="reference" />
+        <attr name="baseScaleType" format="enum">
+            <enum name="fitXY" value="0" />
+            <enum name="fitStart" value="1" />
+            <enum name="fitCenter" value="2" />
+            <enum name="fitEnd" value="3" />
+            <enum name="center" value="4" />
+            <enum name="centerInside" value="5" />
+            <enum name="centerCrop" value="6" />
+        </attr>
+        <attr name="asCircle" format="boolean" />
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="borderColor" format="color" />
+        <attr name="borderWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="SwipeMenuLayout">
+        <attr name="menuSide" format="enum">
+            <enum name="Left" value="1" />
+            <enum name="Right" value="0" />
+        </attr>
+        <attr name="dynamicMenuWidth" format="boolean" />
     </declare-styleable>
 </resources>

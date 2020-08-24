@@ -1,8 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.3.50'
-
     apply from: 'dependencies.gradle'
 
     repositories {
@@ -14,7 +12,7 @@ buildscript {
         }
     }
     dependencies {
-        def dependencies = rootProject.ext.projectDependencies
+        def dependencies = rootProject.ext.dependencies
 
         classpath dependencies.gradle
         classpath dependencies.kotlinPlugin
@@ -22,7 +20,6 @@ buildscript {
         classpath dependencies.fabric
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 

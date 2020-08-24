@@ -1,13 +1,12 @@
 package my.luckydog.di.signup
 
 import dagger.Component
-import my.luckydog.di.activity.MainActivityComponent
+import my.luckydog.di.auth.AuthComponent
+import my.luckydog.di.scopes.FragmentScope
 import my.luckydog.presentation.fragments.signup.SignUpFragment
 
-@SignUpScope
-@Component(
-    modules = [SignUpModule::class], dependencies = [MainActivityComponent::class]
-)
+@FragmentScope
+@Component(modules = [SignUpModule::class], dependencies = [AuthComponent::class])
 interface SignUpComponent {
 
     fun inject(activity: SignUpFragment)

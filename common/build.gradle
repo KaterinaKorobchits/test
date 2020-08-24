@@ -1,0 +1,17 @@
+apply plugin: 'java-library'
+
+apply plugin: 'kotlin'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations {
+    provided
+}
+
+dependencies {
+    def dependencies = rootProject.ext.dependencies
+
+    implementation dependencies.kotlin
+    implementation dependencies.coroutinesCore
+}

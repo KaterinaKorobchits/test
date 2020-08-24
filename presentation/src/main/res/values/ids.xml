@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="fab" type="id"/>
+    <item name="btn_positive" type="id"/>
+    <item name="btn_negative" type="id"/>
+    <item name="btn_neutral" type="id"/>
+
+    <item name="startContainer" type="id"/>
+    <item name="endContainer" type="id"/>
+    <item name="foregroundContainer" type="id"/>
+</resources>

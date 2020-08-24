@@ -10,7 +10,7 @@ interface DialogManager {
 
     fun dismiss()
 
-    fun clear()
+    fun clearExcept(dialogsId: List<String>)
 
-    fun clearDialogs(dialogsId: List<String>)
+    fun showNext(context: Context)
 }

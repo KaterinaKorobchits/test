@@ -22,12 +22,26 @@ android {
 
 dependencies {
     implementation project(':boundaries')
-    def dependencies = rootProject.ext.dataDependencies
-    def roomDependencies = rootProject.ext.roomDependencies
+    implementation project(':common')
+
+    def dependencies = rootProject.ext.dependencies
 
     implementation dependencies.kotlin
 
-    implementation roomDependencies.roomKtx
-    implementation roomDependencies.roomRx
-    kapt roomDependencies.roomCompiler
+    implementation dependencies.roomKtx
+    implementation dependencies.roomRx
+    kapt dependencies.roomCompiler
+
+    implementation dependencies.logginInterceptor
+    implementation dependencies.retrofitRxAdapter
+    implementation dependencies.retrofitConverterGson
+
+    implementation dependencies.coroutinesCore
+    implementation dependencies.coroutinesAndroid
+
+    implementation (dependencies.config){
+        exclude group: 'com.google.protobuf', module: 'protobuf-lite'
+    }
+
+    implementation dependencies.inject
 }

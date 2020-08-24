@@ -10,7 +10,8 @@ configurations {
 }
 
 dependencies {
-    def dependencies = rootProject.ext.boundariesDependencies
+    implementation project(':common')
+    def dependencies = rootProject.ext.dependencies
 
     implementation dependencies.kotlin
     implementation dependencies.rxJava

@@ -4,15 +4,15 @@ import android.content.Context
 
 interface SignInDialogs {
 
-    fun showProgress(context: Context, text: String)
+    fun prepare(context: Context)
+
+    fun dismiss()
+
+    fun showProgress(context: Context)
 
     fun hideProgress()
 
     fun showUnknownError(context: Context)
 
     fun showCredentialsIncorrect(context: Context, message: String)
-
-    fun hide()
-
-    fun clear()
 }

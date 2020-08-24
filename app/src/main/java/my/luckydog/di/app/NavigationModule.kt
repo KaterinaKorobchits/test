@@ -17,7 +17,10 @@ abstract class NavigationModule {
         @JvmStatic
         @Provides
         @Singleton
-        fun provideNavigator(): Navigator = Navigator()
+        fun provideNavigator(): Navigator {
+            println("!!!dagger: provideNavigator")
+            return Navigator()
+        }
     }
 
     @Binds

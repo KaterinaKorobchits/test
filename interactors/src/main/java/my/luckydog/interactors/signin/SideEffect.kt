@@ -19,6 +19,5 @@ sealed class SideEffect {
         object ShowUnknownError : Dialog()
         object ShowProgress : Dialog()
         object HideProgress : Dialog()
-        object Clear : Dialog()
     }
 }

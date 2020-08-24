@@ -6,6 +6,8 @@ interface DialogsBuffer {
 
     fun getFirstId(): String
 
+    fun getIds(): List<String>
+
     fun add(id: String, params: DialogParams)
 
     fun remove(id: String)
@@ -13,6 +15,4 @@ interface DialogsBuffer {
     fun isContain(id: String): Boolean
 
     fun isNotEmpty(): Boolean
-
-    fun clear()
 }

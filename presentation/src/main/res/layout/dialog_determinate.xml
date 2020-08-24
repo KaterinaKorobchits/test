@@ -13,6 +13,7 @@
     </data>
 
     <FrameLayout
+        android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
@@ -25,6 +26,8 @@
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             android:background="#80FFFFFF"
+            android:clickable="true"
+            android:focusable="true"
             android:paddingTop="35dp"
             android:paddingBottom="35dp">
 

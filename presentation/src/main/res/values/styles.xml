@@ -1,23 +1,86 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@android:color/darker_gray</item>
+        <item name="colorPrimaryDark">@android:color/darker_gray</item>
+        <item name="colorAccent">@android:color/darker_gray</item>
+
+        <item name="windowBackgroundColor">@android:color/white</item>
+        <item name="android:windowBackground">?attr/windowBackgroundColor</item>
+
+        <item name="android:textViewStyle">@style/AppTheme.TextView</item>
         <item name="textInputStyle">@style/AppTheme.TextInputLayout</item>
         <item name="editTextStyle">@style/AppTheme.EditText</item>
-        <item name="materialButtonStyle">@style/AppTheme.MaterialButton</item>
+        <item name="materialButtonStyle">@style/AppTheme.Button</item>
+        <item name="toolbarStyle">@style/AppTheme.Toolbar</item>
+        <item name="materialCardViewStyle">@style/AppTheme.Card</item>
+        <item name="bottomNavigationStyle">@style/AppTheme.BottomNav</item>
+        <item name="navigationViewStyle">@style/AppTheme.NavView</item>
+        <item name="android:switchStyle">@style/AppTheme.Switch</item>
+
+        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
+        <item name="textAppearanceButton">@style/AppTextAppearance.Button</item>
+        <item name="shapeAppearanceMediumComponent">@style/AppShapeAppearance.MediumComponent</item>
+
+        <item name="chipGroupStyle">@style/AppTheme.ChipGroup</item>
+        <item name="chipStyle">@style/AppTheme.Chip</item>
     </style>
 
-    <style name="AppTheme.Launcher">
-        <item name="android:windowBackground">@drawable/launch_screen</item>
+    <style name="AppShapeAppearance.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="AppShapeAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="AppTextAppearance.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="fontFamily">sans-serif-black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AppTextAppearance.Text" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="fontFamily">sans-serif-black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- Light application theme.-->
+    <style name="AppTheme.LightTheme">
+        <item name="colorPrimary">@color/light_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/light_colorPrimaryDark</item>
+        <item name="colorAccent">@color/light_colorAccent</item>
+
+        <item name="windowBackgroundColor">@color/light_background</item>
+
+        <item name="floatingActionButtonStyle">@style/AppTheme.Fab.Light</item>
+    </style>
+
+    <!-- Dark application theme.-->
+    <style name="AppTheme.DarkTheme">
+        <item name="colorPrimary">@color/dark_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/dark_colorPrimaryDark</item>
+        <item name="colorAccent">@color/dark_colorAccent</item>
+
+        <item name="windowBackgroundColor">@color/dark_background</item>
+
+        <item name="floatingActionButtonStyle">@style/AppTheme.Fab.Dark</item>
+    </style>
+
+    <!-- Styles -->
+    <style name="AppTheme.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/colorPrimaryDark</item>
     </style>
 
     <style name="AppTheme.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@android:color/holo_orange_light</item>
+
     </style>
+
 
     <style name="AppTheme.EditText" parent="Widget.AppCompat.EditText">
         <item name="android:textSize">16sp</item>
@@ -25,22 +88,104 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
-    <style name="AppTheme.MaterialButton" parent="Widget.MaterialComponents.Button">
-        <item name="android:textSize">18sp</item>
+    <style name="AppTheme.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">@android:color/white</item>
-        <item name="backgroundTint">@android:color/holo_orange_light</item>
+        <item name="backgroundTint">?attr/colorAccent</item>
+        <item name="android:gravity">center</item>
     </style>
 
-    <style name="DateTimePickerDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <item name="android:buttonBarPositiveButtonStyle">@style/DateTimePickerDialogButton</item>
-        <item name="android:buttonBarNegativeButtonStyle">@style/DateTimePickerDialogButton</item>
-        <item name="android:buttonBarNeutralButtonStyle">@style/DateTimePickerDialogButton</item>
+    <style name="AppTheme.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@android:color/holo_purple</item>
+        <item name="backgroundTint">@android:color/white</item>
+        <item name="elevation">5dp</item>
+
+        <item name="cornerRadius">5dp</item>
+
+    </style>
+
+    <style name="AppTheme.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Card</item>
+    </style>
+
+    <style name="AppTheme.ChipGroup" parent="Widget.MaterialComponents.ChipGroup">
+        <item name="chipSpacingHorizontal">12dp</item>
+        <item name="chipSpacingVertical">4dp</item>
+    </style>
+
+    <style name="AppTheme.Chip" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="shapeAppearance">@style/AppShapeAppearance.Chip</item>
+    </style>
+
+    <style name="AppShapeAppearance.Chip" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">4dp</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Card" parent="">
+        <item name="strokeColor">@android:color/holo_red_light</item>
+        <item name="strokeWidth">4dp</item>
+    </style>
+
+    <style name="AppTheme.BottomNav" parent="@style/Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">@color/bg_bottom_nav_view</item>
+    </style>
+
+    <style name="AppTheme.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/bg_toolbar</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
+    <style name="AppTheme.Fab" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">?attr/colorAccent</item>
+        <item name="tint">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.Fab.Light" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/light_colorAccent</item>
+        <item name="tint">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.Fab.Dark" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/dark_colorAccent</item>
+        <item name="tint">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.NavView" parent="@style/Widget.Design.NavigationView">
+        <item name="android:background">@color/bg_nav_view</item>
+    </style>
+
+    <style name="AppTheme.Switch" parent="Widget.AppCompat.CompoundButton.Switch" />
+
+    <style name="TimePickerDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="android:buttonBarPositiveButtonStyle">@style/DialogButton</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/DialogButton</item>
+        <item name="android:buttonBarNeutralButtonStyle">@style/DialogButton</item>
         <item name="colorAccent">#ff6d00</item>
         <item name="colorControlActivated">#33691e</item>
         <item name="colorControlHighlight">#d50000</item>
     </style>
 
-    <style name="DateTimePickerDialogButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+    <style name="DatePickerDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="android:buttonBarPositiveButtonStyle">@style/DialogButton</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/DialogButton</item>
+        <item name="android:buttonBarNeutralButtonStyle">@style/DialogButton</item>
+        <item name="colorAccent">#ff6d00</item>
+        <item name="colorControlActivated">#33691e</item>
+        <item name="colorControlHighlight">#d50000</item>
+    </style>
+
+    <style name="MessageDialogTheme" parent="AppTheme">
+        <item name="materialButtonStyle">@style/MessageDialogButton</item>
+    </style>
+
+    <style name="MessageDialogButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">#ff6d00</item>
+    </style>
+
+    <style name="InputDialogTheme" parent="AppTheme">
+        <item name="materialButtonStyle">@style/MessageDialogButton</item>
+    </style>
+
+    <style name="DialogButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="backgroundTint">@android:color/transparent</item>
         <item name="android:textColor">#ff6d00</item>
     </style>

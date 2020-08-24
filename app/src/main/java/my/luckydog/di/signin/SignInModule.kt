@@ -1,83 +1,45 @@
 package my.luckydog.di.signin
 
-import android.content.Context
-import android.content.res.Resources
-import androidx.navigation.NavController
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import my.luckydog.boundaries.session.SessionStore
 import my.luckydog.boundaries.signin.errors.SignInErrorHandler
 import my.luckydog.boundaries.signin.repositories.SignInRepository
-import my.luckydog.data.bd.LuckyDogDatabase
-import my.luckydog.data.bd.UserDao
 import my.luckydog.data.signin.SignInErrorHandlerImpl
 import my.luckydog.data.signin.SignInRepositoryImpl
-import my.luckydog.di.app.AppModule.Companion.APP_CONTEXT
+import my.luckydog.di.scopes.FragmentScope
 import my.luckydog.domain.signin.SignInCase
 import my.luckydog.domain.signin.SignInCaseImpl
 import my.luckydog.domain.signin.SignInInteractorImpl
-import my.luckydog.domain.validators.EmailCase
-import my.luckydog.domain.validators.EmailCaseImpl
-import my.luckydog.domain.validators.PasswordCase
-import my.luckydog.domain.validators.PasswordCaseImpl
 import my.luckydog.interactors.signin.SignInInteractor
-import my.luckydog.navigation.NavigatorProducer
 import my.luckydog.navigation.SignInNavigationImpl
-import my.luckydog.presentation.dialogs.DialogManager
 import my.luckydog.presentation.fragments.signin.dialogs.SignInDialogs
 import my.luckydog.presentation.fragments.signin.dialogs.SignInDialogsImpl
 import my.luckydog.presentation.fragments.signin.navigation.SignInNavigation
-import javax.inject.Named
 
 @Module
-class SignInModule {
+abstract class SignInModule {
 
-    @Provides
-    @SignInScope
-    fun provideNavigation(producer: NavigatorProducer): SignInNavigation =
-        SignInNavigationImpl(producer)
+    @Binds
+    @FragmentScope
+    abstract fun provideNavigation(navigation: SignInNavigationImpl): SignInNavigation
 
-    @Provides
-    @SignInScope
-    fun provideDialogs(
-        manager: DialogManager,
-        resources: Resources
-    ): SignInDialogs = SignInDialogsImpl(manager, resources)
+    @Binds
+    @FragmentScope
+    abstract fun provideDialogs(dialogs: SignInDialogsImpl): SignInDialogs
 
-    @Provides
-    @SignInScope
-    fun provideInteractor(case: SignInCase): SignInInteractor = SignInInteractorImpl(case)
+    @Binds
+    @FragmentScope
+    abstract fun provideInteractor(interactor: SignInInteractorImpl): SignInInteractor
 
-    @Provides
-    @SignInScope
-    fun provideSignInCase(
-        emailCase: EmailCase,
-        passwordCase: PasswordCase,
-        repository: SignInRepository,
-        session: SessionStore,
-        errors: SignInErrorHandler
-    ): SignInCase = SignInCaseImpl(emailCase, passwordCase, repository, session, errors)
+    @Binds
+    @FragmentScope
+    abstract fun provideSignInCase(case: SignInCaseImpl): SignInCase
 
-    @Provides
-    @SignInScope
-    fun provideRepository(dao: UserDao): SignInRepository = SignInRepositoryImpl(dao)
+    @Binds
+    @FragmentScope
+    abstract fun provideRepository(repository: SignInRepositoryImpl): SignInRepository
 
-    @Provides
-    @SignInScope
-    fun provideErrorHandler(res: Resources): SignInErrorHandler = SignInErrorHandlerImpl(res)
-
-
-    @Provides
-    @SignInScope
-    fun provideDao(@Named(APP_CONTEXT) context: Context): UserDao {
-        return LuckyDogDatabase.getDatabase(context).userDao()
-    }
-
-    @Provides
-    @SignInScope
-    fun provideEmailCase(): EmailCase = EmailCaseImpl()
-
-    @Provides
-    @SignInScope
-    fun providePasswordCase(): PasswordCase = PasswordCaseImpl()
+    @Binds
+    @FragmentScope
+    abstract fun provideErrorHandler(errors: SignInErrorHandlerImpl): SignInErrorHandler
 }

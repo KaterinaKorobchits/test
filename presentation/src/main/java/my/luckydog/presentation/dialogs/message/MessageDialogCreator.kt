@@ -4,8 +4,13 @@ import android.app.Dialog
 import android.content.Context
 import my.luckydog.presentation.dialogs.DialogParams
 import my.luckydog.presentation.dialogs.factories.DialogCreator
+import javax.inject.Inject
 
-class MessageDialogCreator : DialogCreator {
+class MessageDialogCreator @Inject constructor() : DialogCreator {
+
+    init {
+        println("!!!init: MessageDialogCreator - ${this::class.java.name} ${this.hashCode()}")
+    }
 
     override fun create(context: Context, params: DialogParams): Dialog {
         params as MessageDialogParams
@@ -13,7 +18,6 @@ class MessageDialogCreator : DialogCreator {
             .theme(params.theme)
             .cancelable(params.isCancelable)
             .form(params.form)
-            .buttonForm(params.buttonForm)
             .autoDismissNegative(params.isAutoDismissNegative)
             .autoDismissPositive(params.isAutoDismissPositive)
             .autoDismissNeutral(params.isAutoDismissNeutral)

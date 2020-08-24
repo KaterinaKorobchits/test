@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="form"
+            type="my.luckydog.presentation.fragments.learn.LearnForm" />
+
+        <variable
+            name="answerAdapter"
+            type="my.luckydog.presentation.fragments.learn.AnswerAdapter" />
+
+        <variable
+            name="lettersAdapter"
+            type="my.luckydog.presentation.fragments.learn.LettersAdapter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Your answer:"
+            app:layout_constraintBottom_toTopOf="@id/rcv_answer"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/white"
+            android:minHeight="60dp"
+            android:padding="15dp"
+            app:adapter="@{answerAdapter}"
+            app:gridLayoutColumns="@{8}"
+            app:itemMargin="@{5}"
+            app:items="@{form.answerLetters}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_letters"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            app:adapter="@{lettersAdapter}"
+            app:gridLayoutColumns="@{5}"
+            app:itemMargin="@{5}"
+            app:items="@{form.letters}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rcv_answer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

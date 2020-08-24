@@ -3,10 +3,15 @@ package my.luckydog.data.signup
 import io.reactivex.Single
 import my.luckydog.boundaries.signup.errors.EmailAlreadyExist
 import my.luckydog.boundaries.signup.repositories.SignUpRepository
-import my.luckydog.data.bd.User
-import my.luckydog.data.bd.UserDao
+import my.luckydog.data.app.db.user.User
+import my.luckydog.data.app.db.user.UserDao
+import javax.inject.Inject
 
-class SignUpRepositoryImpl(private val dao: UserDao) : SignUpRepository {
+class SignUpRepositoryImpl @Inject constructor(private val dao: UserDao) : SignUpRepository {
+
+    init {
+        println("!!!init: SignUpRepositoryImpl - ${this::class.java.name} ${this.hashCode()}")
+    }
 
     override fun signUp(email: String, password: String) = dao.isExistEmail(email)
         .map { it == 1 }

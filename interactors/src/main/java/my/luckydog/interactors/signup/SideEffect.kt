@@ -6,6 +6,7 @@ sealed class SideEffect {
         data class ToSignIn(val email: String) : Navigate()
         object ToHome : Navigate()
         object ToTerms : Navigate()
+        object ToAppSettings : Navigate()
     }
 
     sealed class UpdateUi : SideEffect() {
@@ -19,6 +20,5 @@ sealed class SideEffect {
         object ShowUnknownError : Dialog()
         object ShowProgress : Dialog()
         object HideProgress : Dialog()
-        object Clear : Dialog()
     }
 }

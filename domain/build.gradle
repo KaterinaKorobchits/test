@@ -12,16 +12,21 @@ configurations {
 dependencies {
     implementation project(':interactors')
     implementation project(':boundaries')
-    def dependencies = rootProject.ext.domainDependencies
+    implementation project(':common')
+
+    def dependencies = rootProject.ext.dependencies
     def testDependencies = rootProject.ext.testDependencies
 
     implementation dependencies.kotlin
 
     implementation dependencies.rxJava
+    implementation dependencies.coroutinesCore
 
     implementation dependencies.validator
 
     testImplementation testDependencies.jUnit
     testImplementation testDependencies.testRunner
+
+    implementation dependencies.inject
 }
 

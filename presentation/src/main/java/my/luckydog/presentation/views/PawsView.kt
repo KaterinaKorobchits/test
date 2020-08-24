@@ -8,9 +8,9 @@ import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat.getColor
 import my.luckydog.presentation.R
-import my.luckydog.presentation.extensions.getBitmap
-import my.luckydog.presentation.extensions.rotate
-import my.luckydog.presentation.extensions.typedArray
+import my.luckydog.presentation.core.extensions.getBitmap
+import my.luckydog.presentation.core.extensions.rotate
+import my.luckydog.presentation.core.extensions.typedArray
 import kotlin.LazyThreadSafetyMode.NONE
 
 class PawsView : View {
@@ -29,7 +29,7 @@ class PawsView : View {
     }
 
     private val maxPawSize: Float by lazy(NONE) { MAX_PAW_SIZE_DP * resources.displayMetrics.density }
-    private val defPawColor: Int by lazy(NONE) { getColor(context, R.color.colorPrimary) }
+    private val defPawColor: Int by lazy(NONE) { getColor(context, R.color.light_colorPrimary) }
     private val paint: Paint by lazy(NONE) {
         Paint(Paint.ANTI_ALIAS_FLAG).apply { setColor(this, defPawColor) }
     }
